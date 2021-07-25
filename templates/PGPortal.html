@@ -1,0 +1,242 @@
+{% load static %}
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <title>PG Portal</title>
+ 
+    <link  rel="stylesheet" href="{% static 'PG.css' %}">
+    
+</head>
+    <script src="{% static 'pg.js' %}">
+    
+    </script>
+    <body class="main">
+        {% csrf_token %}
+            <div class="main1">
+            <img src="{% static 'pgimages\clipart3499.png' %}" width="70" height="40" align=left>
+            <h1>Paying Guest Accomodation</h1>
+            <img class="i1" src="{% static 'pgimages\sinin.png' %}" width="40" height="40" align=right>
+            </div>
+            <div class="main2">
+                <label for="text1">Select a City:</label>
+                <select size="" id="city">
+                    <option class="default text">select</option>
+                    {% for city in cities %}
+                    <option value="{{city.id}}" id="city_id">{{city.name}}</option>
+                    {% endfor %}   
+                </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="text2">Select Area(s):</label>
+                <select size="" id="areas_data_box" class="menu"></select>
+                <button class="b1" onclick="onGo()"> Go</button>&nbsp;&nbsp;
+                <button class="b2" onclick="onReset()"> Reset</button>
+             </div>
+		<div id="welcomeImg">
+		<img src="{% static 'pgimages\welcome.jpg' %}" width="100%" height="83.8%" align=center>
+		</div>
+        <div class="typeof" id="types">
+        <label for="p1">Type of PG:</label>&nbsp;&nbsp;
+        <input type="radio" checked name="s1" id="g1" value="1"> Gents&nbsp;&nbsp;
+           <input type="radio" name="s1" id="g2" value="2"> Ladies&nbsp;&nbsp;
+           <input type="radio" name="s1" id="g3" value="3"> Both&nbsp;
+            <label for="p2" >Type of Food:</label>
+        <input type="radio" checked name="s2" id="f1" value="2">&nbsp;South-Indian &nbsp;&nbsp;
+           <input type="radio" name="s2" id="f2" value="1">&nbsp;North-Indian &nbsp;&nbsp;
+            <input type="radio" name="s2" id="f3" value="3">&nbsp;Both&nbsp;
+             <label for="p3">Type of Sharing:</label>&nbsp;&nbsp;
+            <select size="" id="p3">
+            <option id = "s1" value="1" >Single Sharing</option>
+            <option id = "s2" value="2">2-Sharing</option>
+            <option id = "s3" value="3">3-Sharing</option>    
+            <option id = "s4" value="4">4-Sharing</option>
+            </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            
+            <label for="price">price range:</label>
+            <input type="number" id="price" name='pricerange' min='0'>&nbsp;&nbsp;&nbsp;
+            <button class="get" onclick="onGetDetails()" id ="details" value="1">Get Details</button>
+			
+         </div>
+		 <hr>
+           <div class="talign" id="showtable">
+            <table border="1px" class="tablec" id="pgdetails">
+            
+            
+			<div class="form-popup" id="myForm">
+			<form class="form-container">
+			<h4>Customer Ratings/Feedback</h4>
+
+			<label for="userratings"><b>User Reviews</b></label><br>
+			<textarea  id="userratings" rows="5" cols="40"></textarea><br>
+
+			<label for="feedback"><b>Provide Feedback/Suggestion to PG</b></label><br>
+			<textarea id="feedback" rows="5" cols="40"/></textarea><br>
+
+			<label type="suggestion"><b>Provide Suggestions to Website</b></label><br>
+			<textarea  id="suggestion" rows="5" cols="40"/></textarea><br>
+			<button type="submit" class="but1">Submit</button>
+			<button type="button" class="but2" onclick="closeForm()">Close</button>
+			</form>
+			</div>
+				
+            
+            </table>
+            </div>
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+            <script>
+                var price_filter=document.getElementById('price').defaultValue=0
+                var for_type=document.getElementById('g1').value
+                var food=document.getElementById('f1').value
+                var sharing=document.getElementById('p3')
+                const areasDataBox = document.getElementById('areas_data_box')
+                const cityinput= document.getElementById('city')
+                const city_selected=document.getElementById('city_id')
+                const details=document.getElementById('details')
+                const pgs_list=document.getElementById('list')
+                var pgdetails=document.getElementById('pgdetails')
+                var pg_count=0
+                var areas_id=areasDataBox.value
+                document.getElementById('price').addEventListener('change',e=>{
+                    price_filter=document.getElementById("price").value;
+                })
+                document.getElementById('g1').addEventListener('change',e=> {
+                    for_type = document.getElementById('g1').value;
+                    console.log("for",for_type)
+                  })
+                document.getElementById('g2').addEventListener('change',e=> {
+                    for_type = document.getElementById('g2').value;
+                    console.log("for",for_type)
+                  }),
+                document.getElementById('g3').addEventListener('change',e=> {
+                    for_type = document.getElementById('g3').value;
+                    console.log("for",for_type)
+                  }),  
+                document.getElementById('f1').addEventListener('change',e=> {
+                    food = document.getElementById('f1').value;
+                    console.log("food",food)
+                  }),
+                document.getElementById('f2').addEventListener('change',e=> {
+                    food = document.getElementById('f2').value;
+                    console.log("food",food)
+                  }),
+                document.getElementById('f3').addEventListener('change',e=> {
+                    food = document.getElementById('f3').value;
+                    console.log("food",food)
+                  }),
+                  
+                areasDataBox.addEventListener('change',e=>{
+                    console.log(city_selected.value)
+                    console.log(areasDataBox.value)
+                    areas_id=areasDataBox.value
+                    console.log(areas_id)
+                }),
+                details.addEventListener('click',e=>{
+                    console.log("type",for_type)
+                    console.log("food",food)
+                    console.log("sharing",sharing.value)
+                    console.log("area",areas_id)
+                    console.log("price",price_filter)
+                    console.log(details)
+                    pgdetails.innerHTML='<thead> <h3>Available PG \'s:</h3> </thead> <tr id="mainhead"> <th>PG Name</th> <th>Owner Information</th><th>PG Address</th> <th>Price Per Month</th> <th>User Rating\'s</th> <th>Booking</th> </tr><td id="list"></td>'
+                    pg_count=0
+                    $.ajax({
+                        type: 'GET',
+                        url: `details/${areas_id},${for_type},${food},${sharing.value},${price_filter}/`,
+                        success:function(response){
+                            console.log(response.pg)
+                            console.log(response.pg[0])
+                            console.log("sent")
+                            pg_details=response.pg
+                            pg_pricing=response.price
+                            console.log(pg_pricing)
+                            console.log(pg_details)
+                            pg_details.map(item=>{
+                                var tr=document.createElement('tr')
+                                var td1=document.createElement("td")
+                                var link=document.createElement('a')
+                                link.setAttribute('href',`/images/${ item.id }`)
+                                link.target='blank'
+                                link.appendChild(document.createTextNode(item.name))
+                                td1.appendChild(link)
+                                console.log(td1)
+                                const td2=document.createElement('td')
+                                td2.textContent=item.description
+                                const td3=document.createElement('td')
+                                var addlink=document.createElement('a')
+                                addlink.setAttribute('href',`${item.location}`)
+                                addlink.appendChild(document.createTextNode(item.address))
+                                addlink.target='blank'
+                                td3.appendChild(addlink)
+                                //td3.textContent=item.address
+                                
+                                const td4=document.createElement('td')
+                                td4.textContent=pg_pricing[pg_count].price
+                                //rating here td
+                                const td5=document.createElement('td')
+                                var but=document.createElement("button")
+                                but.classList.add("getDetails")
+                                but.appendChild(document.createTextNode("Click Here!!!"))
+                                but.onclick=function(){
+                                    openForm()
+                                }
+                                td5.appendChild(but)
+                                //td5.onclick=openForm()
+                                
+                                const td6=document.createElement('td')
+                                var call_num=document.createElement('a')
+                                call_num.setAttribute('href',`tel:${ item.contact_number }`)
+                                call_num.append(document.createTextNode('call'))
+                                td6.append(call_num)
+                                //td6.appendChild(document.createTextNode("call"))
+                                tr.appendChild(td1)
+                                tr.appendChild(td2)
+                                tr.appendChild(td3)
+                                tr.appendChild(td4)
+                                //tr.appendChild(document.createElement('td'))
+                                //tr.appendChild(but)
+                                tr.appendChild(td5)
+                                tr.appendChild(td6)
+                                pgdetails.appendChild(tr)
+                                //pgs_list.appendChild(tr)
+
+                                //pgs_list.appendChild(tr)
+                                pg_count=pg_count+1
+                                console.log(pg_count)
+                                
+                            })
+                        }
+                    })
+
+                }),
+                cityinput.addEventListener('change',e=>{
+                    console.log(e.target.value)
+                    selectedcity=e.target.value
+                    areasDataBox.innerHTML=""
+                    $.ajax({
+                        type: 'GET',
+                        url: `areas/${selectedcity}/`,
+                        success: function(response){
+                            console.log(response.areas)
+                            const areasData = response.areas
+                            console.log(areasData[0]['name'])
+                            areas_id=areasData[0]['name']
+                            areasData.map(item=>{
+                                const option = document.createElement('option')
+                                console.log(item.id)
+                                option.textContent = item.name
+                                option.value=item.id
+                                option.setAttribute('class', 'item')
+                                option.setAttribute('value', item.name)
+                                areasDataBox.appendChild(option)
+                        })
+                        },
+                        error: function(error){
+                            console.log(error)
+                        }
+                    })
+                })
+
+            </script> 
+</body>
+</html>

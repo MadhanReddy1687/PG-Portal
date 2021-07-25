@@ -1,0 +1,14 @@
+{% load static %}
+{% static 'images' as baseurl %}
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Alternative text</h2>
+
+{% for image in img %}
+<img src='{{baseurl}}/{{image.images}}'' alt="Flowers in Chania" width="460" height="345">
+{% endfor %}
+
+</body>
+</html>

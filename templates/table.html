@@ -1,0 +1,11 @@
+{% for details in pg_details %}
+<tr id="details.id"><td><a href= "/images/{{ details.id }}" target="blank">details.name</a></td>
+<td>details.description</td><td>details.address</td><td>pg_pricing.price</td><td>
+    <button class="getDetails" onclick="openForm()">Click Here!!!</button>
+    </td><td><a href="tel:{{details.contactnumber}}">Call</a></td></tr>
+</tr>{% for details in pg_details %}
+<tr id="details.id"><td><a href= "/images/{{ details.id }}" target="blank">details.name</a></td>
+<td>details.description</td><td>details.address</td><td>pg_pricing.price</td><td>
+    <button class="getDetails" onclick="openForm()">Click Here!!!</button>
+    </td><td><a href="tel:{{details.contactnumber}}">Call</a></td></tr>
+</tr>
