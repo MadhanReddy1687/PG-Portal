@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:200i,400&display=swap');
+*{
+    margin: 0;
+    padding:0;
+}
+
+
+.main   {
+    background-image: url("pgimages/back.jpg");
+    font-family: 'Poppins';
+}
+.main h1{
+    text-align: center;
+    color: white;
+    font-size: 25;
+}
+.i1{
+    margin-top: -38;
+	height: auto;
+}
+.main1 {
+    background-color: #002060;
+    height: 40;
+}
+.main2 {
+    padding: 15;
+    font-size: 16;
+	font-weight: bold;
+}
+.main2 select{
+    width: 150;
+    height: 30;
+    font-family: 'Poppins';
+}
+.b1 {
+    width: 50;
+    height: 30;
+    font-family: 'Poppins';
+    margin-left: 400;
+    background-color: #1c921a;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 1rem;
+    font-weight: bold;
+}
+.b2 {
+    width: 60;
+    height: 30;
+    font-family: 'Poppins';
+    background-color: #ff1100;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 1rem;
+    font-weight: bold;
+}
+.get {
+    width: 80;
+    height: 30;
+    font-family: 'Poppins';
+    background-color: #1c921a;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 1rem;
+    font-weight: bold;
+}
+.typeof{
+  
+    font-family: 'Poppins';
+     padding: 15;
+    font-size: 16;
+	display: none;
+}
+.typeof select{
+        width: 150;
+    height: 30;
+    font-family: 'Poppins';
+}
+.typeof label{
+    font-size: 16;   
+    font-family: 'Poppins';
+	font-weight: bold;
+}
+.tablec {
+	width: 95%;
+    height: 50;
+}
+.tablec td,th{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+.tablec td {
+    border: 1px solid #dddddd00;
+    text-align: left;
+    padding: 8px;
+}
+.tablec tr:nth-child(odd){
+    background-color: #ff7f504a;
+}
+#mainhead{
+    background-color: coral;
+}
+.talign {
+    padding-left: 45;
+	padding-top: 20;
+	display: none;
+}
+.feedback{
+	display: none;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    margin-bottom: 10px;
+	font-family: 'Poppins';
+	font-weight: bold;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+  font-family: 'Poppins';
+  font-weight: bold;
+}
+h4{
+	background-color: #002060;
+    color: white;
+} 
+.but1 {
+    width: 60;
+    height: 30;
+    font-family: 'Poppins';
+	background-color: #1c921a;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 1rem;
+    font-weight: bold;
+}
+.but2 {
+    width: 60;
+    height: 30;
+    font-family: 'Poppins';
+    background-color: #ff1100;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 1rem;
+    font-weight: bold;
+}
+.getDetails {
+    width: 50%;
+    height: 30;
+    font-family: 'Poppins';
+    background-color: #002060;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 1rem;
+    font-weight: bold;
+}
+    
+    
+
